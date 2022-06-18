@@ -18,54 +18,24 @@ enum SystemPhase {
 };
 SystemPhase phase = idle;
 
-void idlePhase() {
-	if (SensorValue[button]) {
-		++phase;
-		startTask(moveForePhase);
-	}
-}
-
-task moveForePhase() {
-	motor[drive1] = WHEEL_SPEED;
-}
-
-// void pickupPhase() {
-
-// }
-
-// task moveBackPhase() {
-
-// }
-
-// void eggPhase() {
-
-// }
-
 task main() {
 	while(true){
 		switch (phase) {
 			case idle:
-				idlePhase();
-				break;
-
-			case moveFore:
-				if (SensorValue[range] == CLAW_DISTANCE || SensorValue[button]) {
-					stopTask(moveForePhase);
-					--phase;
+				if (SensorValue[button]) {
+					motor[drive1] = WHEEL_SPEED;
+					++phase;
+					delay(500);
 				}
 				break;
 
-			// case pickup:
-			// 	pickupPhase();
-			// 	break;
-
-			// case moveBack:
-			// 	startTask(moveBackPhase);
-			// 	break;
-
-			// case makeEgg:
-			// 	eggPhase();
-			// 	break;
+			case moveFore:
+				if (SensorValue[range] <= CLAW_DISTANCE || SensorValue[button]) {
+					motor[drive1] = 0;
+					--phase;
+					delay(500);
+				}
+				break;
 		}
 	}
 }
