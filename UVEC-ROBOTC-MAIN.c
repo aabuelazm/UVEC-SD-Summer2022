@@ -13,7 +13,7 @@ enum SystemPhase {
 	moveFore,
 	pickup,
 	moveBack,
-	makeEgg
+	egg
 };
 SystemPhase phase = idle;
 
@@ -34,7 +34,7 @@ void moveBackPhase() {
 
 }
 
-void makeEggPhase() {
+void eggPhase() {
 
 }
 
@@ -58,7 +58,7 @@ task main() {
 				break;
 
 			case makeEgg:
-				makeEggPhase();
+				eggPhase();
 				break;
 		}
 	}
