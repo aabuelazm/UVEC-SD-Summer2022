@@ -11,9 +11,9 @@
 
 enum SystemPhase {
 	idle,
-	moveFore//,
+	moveFore,
 	// pickup,
-	// moveBack,
+	moveBack//,
 	// egg
 };
 SystemPhase phase = idle;
@@ -30,12 +30,19 @@ task main() {
 				break;
 
 			case moveFore:
-				if (SensorValue[range] <= CLAW_DISTANCE || SensorValue[button]) {
-					motor[drive1] = 0;
-					--phase;
+				if (SensorValue[button]) {
+					motor[drive1] = -WHEEL_SPEED;
+					++phase;
 					delay(500);
 				}
 				break;
+			
+			case moveBack:
+				if (SensorValue[button]) {
+					motor[drive1] = WHEEL_SPEED;
+					--phase;
+					delay(500);
+				}
 		}
 	}
 }
