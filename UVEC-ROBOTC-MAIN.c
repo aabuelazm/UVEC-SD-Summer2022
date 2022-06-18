@@ -43,7 +43,7 @@ task main() {
 
 			case pickup:
 				motor[mClaw] = CLAW_SPEED;
-				while (SensorValue[sClaw] >= CLOSE_CLAW);
+				while (SensorValue[sClaw] >= CLOSE_CLAW) {}
 				motor[mClaw] = 0;
 				motor[mDrive] = -WHEEL_SPEED;
 				++phase;
@@ -56,9 +56,9 @@ task main() {
 				}
 				break;
 
-			case makeEgg:
+			case gg:
 				motor[mArm] = ARM_SPEED;
-				while (SensorValue[sArm] <= ARM_DROP);
+				while (SensorValue[sArm] <= ARM_DROP) {}
 				motor[mArm] = 0;
 				phase = idle;
 				break;
