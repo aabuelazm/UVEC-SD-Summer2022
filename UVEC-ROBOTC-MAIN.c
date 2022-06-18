@@ -15,25 +15,25 @@ enum SystemPhase {
 };
 SystemPhase phase = idle;
 
-task idlePhase() {
+void idlePhase() {
 	if (SensorValue[button])
 		phase = moveFore;
 }
 
-task moveForePhase() {
+void moveForePhase() {
 
 }
 
-task pickupPhase() {
+void pickupPhase() {
 
 }
 
-task moveBackPhase() {
+void moveBackPhase() {
 
 }
 
-task makeEggPhase() {
-	
+void makeEggPhase() {
+
 }
 
 task main() {
